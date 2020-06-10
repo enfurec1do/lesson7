@@ -1,0 +1,18 @@
+version: '3.7'
+services:
+  builder:
+    build: /builder
+    volumes:
+        - 'share:/build/'
+
+  web: 
+    image: /web
+    depends_on:
+      - builder
+    ports:
+        - '8080:8080'
+    volumes:
+        - 'share:/opt/tomcat/webapps/'
+  volumes:
+     build:
+        driver: local 
