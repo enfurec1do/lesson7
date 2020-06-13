@@ -24,8 +24,5 @@ RUN apk add --update curl &&\
 # Set environment
 ENV CATALINA_HOME /opt/tomcat
 
-# Copy war
-COPY /build/* ${CATALINA_HOME}/webapps/
-
 # Launch Tomcat on startup
 CMD ${CATALINA_HOME}/bin/catalina.sh run
