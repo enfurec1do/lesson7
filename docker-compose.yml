@@ -1,18 +1,19 @@
 version: '3.7'
 services:
   builder:
-    build: /builder
+    build: ./builder
+    # dockerfile: Dockerfile-maven
+    # image: builder:latest
     volumes:
-        - 'share:/build/'
-
-  web: 
-    image: /web
+       # - . :/build
+       - share:/build
+  web:
+    build: ./web
     depends_on:
       - builder
     ports:
-        - '8080:8080'
+        - '8081:8080'
     volumes:
-        - 'share:/opt/tomcat/webapps/'
-  volumes:
-     build:
-        driver: local 
+        - share:/opt/tomcat/webapps/
+volumes:
+  share: {}
