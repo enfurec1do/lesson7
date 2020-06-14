@@ -3,17 +3,17 @@ services:
   builder:
     build: ./builder
     # dockerfile: Dockerfile-maven
-    # image: builder:latest
     volumes:
-       # - . :/build
        - share:/build
   web:
-    build: ./web
+    # build: ./web
+    image: tomcat:8.5-alpine
     depends_on:
       - builder
     ports:
         - '8081:8080'
     volumes:
-        - share:/opt/tomcat/webapps/
+        # - share:/opt/tomcat/webapps/
+        -  share:/usr/local/tomcat/webapps/
 volumes:
   share: {}
